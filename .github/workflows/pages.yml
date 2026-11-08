@@ -1,26 +1,54 @@
 name: Publish CellScope Lab web
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: cellscope-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    name: Validate and deploy web/index.html
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate website and prepare Pages artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_assets.py
+          test -s web/index.html
+          test -s web/guide.html
+          mkdir -p dist
+          cp -a web/. dist/
+          touch dist/.nojekyll
+          test -s dist/index.html
+          test -s dist/assets/app.js
+          test -s dist/assets/styles.css
+          echo "Deploying CellScope Lab web/index.html as the site root"
+          find dist -maxdepth 2 -type f | sort
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the verified HTML site
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: web
-      - id: deployment
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
