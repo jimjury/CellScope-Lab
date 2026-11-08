@@ -1,4 +1,13 @@
-# Verification summary — v0.2.0
+# Current QA status — v0.4.0 (2026-11-08)
+
+- **52/52 Python tests passed** and **28/28 Node/JavaScript tests passed**, including deterministic DOM event simulation for academy controls and reversible bilingual switching.
+- **192 unique DOM IDs, 39 wired static buttons, 22 actual SHA256-backed model code excerpts**, checked by `scripts/verify_assets.py`.
+- **16 HTML/CSS/JS assets served successfully over local HTTP**, checked by `scripts/verify_web_http.py`; both CSS files parsed without errors.
+- Official GitHub Pages workflow validates all web assets, JavaScript tests and local HTTP before copying `web/` into `dist/` and deploying the complete HTML homepage. See [WEB_QA.md](WEB_QA.md) and Actions for cloud outcomes.
+- The Chromium binary has an administrator-enforced URL blocklist, so **real-browser automation and screenshots were not successfully executed here**. The DOM simulator validates JS events but cannot certify layout or CSS rendering. This is a disclosed limitation, not a claim of 100% browser verification.
+- Metric values shown by the calculators derive from user-provided numbers; demo training data remain synthetic; fault classification is a **frontend educational calculator**, not a Python classifier. Chronological and leave-one-condition split adviser entries are recommendations, not backend execution modes.
+
+# Verification history — v0.2.0
 
 **Checked during v0.2 update (2026-11-08):**
 

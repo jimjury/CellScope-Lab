@@ -29,3 +29,17 @@ Batch `B`, time window `W`, features `F = 3` for SOC and `F = 5` for cycle summa
 ## Lifecycle task limits
 
 This prototype provides baseline supervised regression. It does not implement BatteryBench's Four-Level protocol, BatteryLife's cross-chemistry training scale, self-supervised pretraining, joint labels, physical simulation or Bayesian uncertainty. Those are possible future modules, and must not be confused with implemented functionality.
+
+## v0.4 educational extension
+
+The static web retains the original experimental viewer while adding a stand-alone educational layer:
+
+- `web/assets/academy-core.js` — pure finite-vector metrics and split decision functions; no network dependencies.
+- `web/assets/academy-data.js` — bilingual course cards, 16 cleaning issues, 25 neural terms, nine question-and-explanation items, and attribution links.
+- `web/assets/academy-ui.js` — local forms, code excerpts, quality clinic, metrics, quiz, non-obstructing mascot. External ADV data is treated as untrusted, rendered via `textContent` only and links are HTTPS-checked.
+- `web/assets/model-code.generated.js` — generated from the Python AST using `scripts/build_model_code.py`, with SHA256 of `cellscope/models.py`; strict source/filename consistency checked by `scripts/verify_assets.py`.
+- `web/assets/i18n.js` — Chinese/English reversible DOM-localization of static and dynamically inserted text; optional theme toggle remains user-controlled, default is bright.
+- `web/assets/academy.css`, `web/guide.en.html` — visual design / standalone English guide.
+- `scripts/verify_web_http.py` and `tests-js/ui_contract.test.cjs` — HTTP asset checks and DOM-event simulation.
+
+The mascot provides offline preset/keyword help only, not external AI, personal user data storage or model training. A right-edge reserved area and in-flow panel prevent its entry point or expanded content from covering charts/controls. The full ADV public directory is a live linked source, with explicit curated offline fallback; originals and permissions stay in the ADV repository.

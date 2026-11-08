@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   deploy:
-    name: Validate and deploy web/index.html
+    name: Audit and deploy the complete HTML workbench
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -25,26 +25,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Validate website and prepare Pages artifact
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify assets, controls, metrics and static HTTP
         shell: bash
         run: |
           set -euo pipefail
           python3 scripts/verify_assets.py
+          node --test tests-js/*.cjs
+          python3 scripts/verify_web_http.py
           test -s web/index.html
           test -s web/guide.html
+          test -s web/guide.en.html
           mkdir -p dist
           cp -a web/. dist/
           touch dist/.nojekyll
           test -s dist/index.html
           test -s dist/assets/app.js
+          test -s dist/assets/academy-ui.js
+          test -s dist/assets/i18n.js
           test -s dist/assets/styles.css
-          echo "Deploying CellScope Lab web/index.html as the site root"
+          echo "Deploying verified CellScope Lab web/index.html as site root"
           find dist -maxdepth 2 -type f | sort
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload the verified HTML site
+      - name: Upload complete verified site
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist

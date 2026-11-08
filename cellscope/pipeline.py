@@ -75,7 +75,10 @@ def run_experiment(config: dict, *, data_override: str | None = None,
             shuffle=bool(train_config.get("shuffle", False)))
         predict = lambda x: predict_neural(model, x)
     preds = {name: predict(x) for name, x in transformed.items()}
-    synthetic_claim = bool(dcfg.get("synthetic", False)) and data_override is None
+    # The caller's source declaration remains attached to an overridden CSV.
+    # An override changes the path, not the observed origin of the data. The
+    # origin_verified flag stays False until independently audited.
+    synthetic_claim = bool(dcfg.get("synthetic", False))
     report = {
         "schema_version": "1.0", "project_version": __version__,
         "created_at_utc": datetime.now(timezone.utc).isoformat(),

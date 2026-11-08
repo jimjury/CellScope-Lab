@@ -29,6 +29,7 @@
     on('theme-toggle','click',() => {
       document.body.classList.toggle('light');
       updateSignal(); renderResults(currentReport);
+      window.dispatchEvent(new CustomEvent('cellscope:themechange'));
     });
     const navLinks = Array.from(document.querySelectorAll('.nav-link'));
     if ('IntersectionObserver' in window) {
@@ -207,6 +208,7 @@
       if(i<stages.length-1)flow.append(make('span','→','flow-arrow'));
     });
     selectLayer(index);
+    window.dispatchEvent(new CustomEvent('cellscope:modelchange',{detail:{id}}));
   }
   function selectLayer(index){
     const d=Designs.map[selectedModel],stages=Designs.stages(selectedModel,signalState.window,'soc');

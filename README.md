@@ -6,6 +6,16 @@
 
 > **Status: functional research prototype (v0.2.0).** Unlike a paper benchmark, this project does not claim validated performance on BatteryBench or BatteryLife raw datasets. It does not contain their model code or redistribute their data. The bundled result is a real run on transparently **synthetic** data.
 
+## v0.4 — Battery AI Research Academy (November 2026)
+
+**Light by default; Chinese/English toggle; fully source-linked and privacy-conscious.** This upgrade turns CellScope Lab from a model observatory into an educational + experimental workflow: 4 learning phases / 16 lessons, 16 time-series data quality scenarios with defensible repair strategies, a split decision adviser and chronological window+purge simulator, verified real Python source excerpts for all 22 models, 25 neural network concept cards, true interactive regression/classification metrics calculators, 9 questions with answer rationales, and live links to the owner's [ADV·BATTERY public dataset/paper index](https://github.com/jimjury/ADV-BATTERY-Dataset-Collection).
+
+The optional bottom-right battery mascot **Volt** opens a separate, in-flow learning panel; it is a **fixed template / keyword guide, not generative AI**, and does not upload conversation data. The mascot entry reserves a dedicated screen-edge lane rather than covering content. The language selector updates learning content and switches the guide to [English](web/guide.en.html) or [Chinese](web/guide.html).
+
+**Scientific truth constraints:** The metrics playground calculates from user-entered vectors. SOC/SOH/RUL are regression tasks; precision, recall, F1 and ROC-AUC apply to explicit fault classification and are **not** comparable to SOC RMSE. The classification playground is educational only; Python backend trains SOC/SOH/RUL regression. Time-ordered holdout and leave-one-condition-out in the adviser are **recommendations, not new CLI modes**; current code supports battery and cycle holdout. The full ADV index requires network/CORS availability, otherwise the fallback shows curated links. Paper-inspired lite models are not exact reproductions.
+
+Read [Academy](docs/ACADEMY.md), [Split protocols](docs/SPLIT_PROTOCOLS.md), [Metric definitions](docs/METRIC_FORMULAS.md), [ADV catalog integration](docs/ADV_INTEGRATION.md) and [Website testing / limits](docs/WEB_QA.md). Interactive site: https://jimjury.github.io/CellScope-Lab/
+
 ## What makes CellScope Lab different?
 
 BatteryBench emphasizes shared SOH/RUL evaluation tasks and domain generalization; BatteryLife emphasizes standardized battery-lifetime data and open baselines. **CellScope Lab bridges methods and education** through an interactive model observatory, a provenance-aware dataset catalog, strict group split audits, an executable minimal Python engine, and importable evidence reports. The backend and website code in this repository were independently implemented.

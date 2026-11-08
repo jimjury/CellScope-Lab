@@ -60,3 +60,5 @@ Use `python -m cellscope prepare --data RAW.csv --task soc --out canonical.csv` 
 ## Security
 
 Do not load third-party pickle objects or torch checkpoints obtained from untrusted archives. The CSV interface deliberately avoids executing external deserializers. The result uploader accepts JSON and treats it as local display data; it does not execute embedded code.
+
+**Synthetic source declaration:** the `data.synthetic` config field is an explicit user-provided provenance declaration, not algorithmically verified. Supplying a different path via `--data` changes the file but does not silently set `synthetic=false`; review your config whenever overriding sources. The audit always has `origin_verified:false` unless a separate check is performed.

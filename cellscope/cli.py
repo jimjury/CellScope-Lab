@@ -90,7 +90,7 @@ def main(argv=None):
         # Order by validation error; test error is descriptive, not selection evidence.
         rows.sort(key=lambda item: (item['val_rmse'], item['model']))
         result = {"schema_version":"cellscope-comparison-v1", "task":config['task'],
-                  "source_sha256":anchor[1], "synthetic":bool(config.get('data',{}).get('synthetic',False)) and opts.data is None,
+                  "source_sha256":anchor[1], "synthetic":bool(config.get('data',{}).get('synthetic',False)),
                   "created_at_utc":datetime.now(timezone.utc).isoformat(),
                   "selection":"sorted_by_validation_rmse_test_is_descriptive_only",
                   "models":rows}

@@ -21,3 +21,13 @@ Data catalog entries link to source archives including MATR, HUST, CALCE, RWTH, 
 - CellScope Lab's procedural network diagram and UI are new illustrations.
 
 No endorsement by the upstream authors is implied.
+
+## v0.4 education and data linkage
+
+- [ADV·BATTERY Dataset Collection](https://github.com/jimjury/ADV-BATTERY-Dataset-Collection): original public dataset, paper and relationship index maintained separately by the repository owner. The linked catalog is not a license to copy raw datasets.
+- [scikit-learn: model evaluation](https://scikit-learn.org/stable/modules/model_evaluation.html): formulas, undefined metrics and classification/reporting conventions.
+- [scikit-learn: TimeSeriesSplit](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html): forward validation and `gap` considerations.
+- [scikit-learn: GroupKFold](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GroupKFold.html): group-wise non-overlapping holdouts.
+- [Netron](https://github.com/lutzroeder/netron), [TensorFlow Playground](https://playground.tensorflow.org/): conceptual inspirations for interactive architecture education only. No third-party code, assets, models or copyrighted tutorial figures copied into CellScope Lab.
+
+The four learning infographics provided by the user inspired the research sequence (data/model/metrics/optimization); content and original diagrams on the website have been independently authored and expanded for battery time series.
